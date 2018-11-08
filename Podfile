@@ -7,5 +7,6 @@ target 'FirebaseChat Example' do
 
   # Pods for FirebaseChat Example
   pod 'Firebase/Auth'
-
+  pod 'Firebase/Database'
+  
 end

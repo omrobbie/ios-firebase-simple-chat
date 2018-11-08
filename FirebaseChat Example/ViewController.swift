@@ -8,12 +8,15 @@
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var txtSignInStatus: UILabel!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var tblChatList: UITableView!
+    
+    var ref: DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,10 +33,23 @@ class ViewController: UIViewController {
         }
     }
     
+    private func sendToFirebase(_ message: String) {
+        guard let uid = Auth.auth().currentUser?.uid else {return}
+        self.ref = Database.database().reference()
+
+        let data = [
+            "user": uid,
+            "message": message
+        ]
+        
+        self.ref.child("chats").childByAutoId().setValue(data)
+    }
+    
     @IBAction func btnSendClicked(_ sender: Any) {
         guard let message = txtMessage.text else {return}
         
         print("Message: \(message)")
+        sendToFirebase(message)
     }
 }
 
