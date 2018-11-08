@@ -109,6 +109,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        let user = self.chats[indexPath.row].user
+
+        if user == uid {
+            cell.textLabel?.textAlignment = .right
+            cell.textLabel?.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            cell.backgroundColor = #colorLiteral(red: 0.9688743949, green: 0.9631143212, blue: 0.9733015895, alpha: 1)
+        }
         
         cell.textLabel?.text = self.chats[indexPath.row].message
         
