@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var txtSignInStatus: UILabel!
     @IBOutlet weak var txtMessage: UITextField!
@@ -24,7 +24,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupEnv()
+        self.setupEnv()
+        self.loadData()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        btnSendClicked(self)
+        
+        return true
     }
     
     private func setupEnv() {
@@ -43,6 +50,29 @@ class ViewController: UIViewController {
         }
     }
     
+    private func loadData() {
+        self.refChats.observe(.value) { (snapshot) in
+            if !snapshot.exists() {self.chats.removeAll()}
+            
+            if snapshot.childrenCount > 0 {
+                self.chats.removeAll()
+                
+                for item in snapshot.children.allObjects as! [DataSnapshot] {
+                    let object = item.value as! [String: String]
+                    
+                    let user = object["user"]
+                    let message = object["message"]
+                    
+                    let chat = ChatModel(user: user, message: message)
+                    
+                    self.chats.append(chat)
+                }
+            }
+            
+            self.tblChatList.reloadData()
+        }
+    }
+    
     private func sendToFirebase(_ message: String) {
         let chat = [
             "user": uid,
@@ -55,6 +85,8 @@ class ViewController: UIViewController {
     @IBAction func btnSendClicked(_ sender: Any) {
         guard let message = txtMessage.text else {return}
         
+        txtMessage.text = ""
+        
         print("Message: \(message)")
         sendToFirebase(message)
     }
@@ -62,13 +94,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return self.chats.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         
-        cell.textLabel?.text = "Hello World!"
+        cell.textLabel?.text = self.chats[indexPath.row].message
         
         return cell
     }
