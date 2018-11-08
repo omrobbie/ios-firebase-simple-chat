@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import FirebaseDatabase
 
-class ViewController: UIViewController, UITextFieldDelegate {
+class ViewController: UIViewController, UITextFieldDelegate, SignInViewControllerDelegate {
 
     @IBOutlet weak var txtSignInStatus: UILabel!
     @IBOutlet weak var txtMessage: UITextField!
@@ -29,15 +29,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         self.loadData()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destination = segue.destination as! SignInViewController
+        
+        destination.delegate = self
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         btnSendClicked(self)
         
         return true
     }
     
-    private func setupEnv() {
-        self.refChats = Database.database().reference().child("chats")
-        
+    func updateSignInStatus() {
         if Auth.auth().currentUser != nil {
             self.txtSignInStatus.text = Auth.auth().currentUser?.uid
             self.btnSignInAndOut.title = "Sign Out"
@@ -48,6 +52,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.btnSignInAndOut.title = "Sign Out"
             }
         }
+    }
+    
+    private func setupEnv() {
+        self.refChats = Database.database().reference().child("chats")
+        
+        self.updateSignInStatus()
     }
     
     private func loadData() {

@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol SignInViewControllerDelegate {
+    func updateSignInStatus()
+}
+
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    
+    var delegate: SignInViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +26,7 @@ class SignInViewController: UIViewController {
     @IBAction func btnSignInAnonymouslyClicked(_ sender: Any) {
         signInAnonymouslyDone {
             self.navigationController?.popViewController(animated: true)
+            self.delegate?.updateSignInStatus()
         }
     }
     
