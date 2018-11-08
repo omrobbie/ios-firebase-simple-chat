@@ -7,10 +7,12 @@
 //
 
 class ChatModel {
+    var id: String?
     var user: String?
     var message: String?
     
-    init(user: String?, message: String?) {
+    init(id: String, user: String?, message: String?) {
+        self.id = id
         self.user = user
         self.message = message
     }

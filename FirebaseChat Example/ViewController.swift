@@ -58,14 +58,14 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 self.chats.removeAll()
                 
                 for object in snapshot.children.allObjects as! [DataSnapshot] {
-                    
                     let item = object.value as! [String: String]
                     
+                    let id = object.key
                     let user = item["user"]
                     let message = item["message"]
-                    
-                    let chat = ChatModel(user: user, message: message)
-                    
+
+                    let chat = ChatModel(id: id, user: user, message: message)
+
                     self.chats.append(chat)
                 }
             }
@@ -101,5 +101,13 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = self.chats[indexPath.row].message
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let id = chats[indexPath.row].id {
+                self.refChats.child(id).removeValue()
+            }
+        }
     }
 }
