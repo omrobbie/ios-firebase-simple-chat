@@ -18,7 +18,9 @@ class SignInViewController: UIViewController {
     }
     
     @IBAction func btnSignInAnonymouslyClicked(_ sender: Any) {
-        print(#function)
+        signInAnonymouslyDone {
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     @IBAction func btnSignInWithEmailClicked(_ sender: Any) {

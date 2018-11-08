@@ -42,12 +42,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.txtSignInStatus.text = Auth.auth().currentUser?.uid
             self.btnSignInAndOut.title = "Sign Out"
         } else {
-            Auth.auth().signInAnonymously { (result, error) in
-                if let error = error {
-                    print("Error: Sign in anonymously failed! \(error)")
-                    return
-                }
-
+            signInAnonymouslyDone {
                 self.uid = Auth.auth().currentUser?.uid
                 self.txtSignInStatus.text = self.uid
                 self.btnSignInAndOut.title = "Sign Out"
@@ -98,25 +93,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
         if btnSignInAndOut.title == "Sign In" {
             self.performSegue(withIdentifier: "toSignIn", sender: self)
         } else {
-            if Auth.auth().currentUser?.isAnonymous ?? false {
-                Auth.auth().currentUser?.delete(completion: { (error) in
-                    if let error = error {
-                        print("Error: Delete anonymous user failed! \(error.localizedDescription)")
-                        return
-                    }
-                })
+            if signOutSuccess() {
+                print("Sign out success!")
+                txtSignInStatus.text = "Please sign in.."
+                btnSignInAndOut.title = "Sign In"
             }
-            
-            do {
-                try Auth.auth().signOut()
-            } catch {
-                print("Error: Sign out failed!")
-                return
-            }
-            
-            print("Sign out success!")
-            txtSignInStatus.text = "Please sign in.."
-            btnSignInAndOut.title = "Sign In"
         }
     }
 }
