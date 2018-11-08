@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6D4F803E836AB350880CA54D /* Pods_FirebaseChat_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 20D568CF8FFE875B451DF48B /* Pods_FirebaseChat_Example.framework */; };
-		FC17F5BE2193E71700364127 /* ChatListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17F5BD2193E71700364127 /* ChatListTableViewCell.swift */; };
 		FC2AF7CD21927E03002FF50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AF7CC21927E03002FF50B /* AppDelegate.swift */; };
 		FC2AF7CF21927E03002FF50B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AF7CE21927E03002FF50B /* ViewController.swift */; };
 		FC2AF7D221927E03002FF50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2AF7D021927E03002FF50B /* Main.storyboard */; };
@@ -21,7 +20,6 @@
 		20D568CF8FFE875B451DF48B /* Pods_FirebaseChat_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FirebaseChat_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		321BE7AE05C048DB9FA646D3 /* Pods-FirebaseChat Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChat Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChat Example/Pods-FirebaseChat Example.debug.xcconfig"; sourceTree = "<group>"; };
 		CF642E9ED63A95FC7F7F5393 /* Pods-FirebaseChat Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FirebaseChat Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-FirebaseChat Example/Pods-FirebaseChat Example.release.xcconfig"; sourceTree = "<group>"; };
-		FC17F5BD2193E71700364127 /* ChatListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListTableViewCell.swift; sourceTree = "<group>"; };
 		FC2AF7C921927E03002FF50B /* FirebaseChat Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirebaseChat Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2AF7CC21927E03002FF50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC2AF7CE21927E03002FF50B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 			children = (
 				FC2AF7CC21927E03002FF50B /* AppDelegate.swift */,
 				FC2AF7CE21927E03002FF50B /* ViewController.swift */,
-				FC17F5BD2193E71700364127 /* ChatListTableViewCell.swift */,
 				FC2AF7D021927E03002FF50B /* Main.storyboard */,
 				FC2AF7D321927E04002FF50B /* Assets.xcassets */,
 				FC2AF7D521927E04002FF50B /* LaunchScreen.storyboard */,
@@ -217,7 +214,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC17F5BE2193E71700364127 /* ChatListTableViewCell.swift in Sources */,
 				FC2AF7CF21927E03002FF50B /* ViewController.swift in Sources */,
 				FC2AF7CD21927E03002FF50B /* AppDelegate.swift in Sources */,
 			);
