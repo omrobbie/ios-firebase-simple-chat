@@ -57,11 +57,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
             if snapshot.childrenCount > 0 {
                 self.chats.removeAll()
                 
-                for item in snapshot.children.allObjects as! [DataSnapshot] {
-                    let object = item.value as! [String: String]
+                for object in snapshot.children.allObjects as! [DataSnapshot] {
                     
-                    let user = object["user"]
-                    let message = object["message"]
+                    let item = object.value as! [String: String]
+                    
+                    let user = item["user"]
+                    let message = item["message"]
                     
                     let chat = ChatModel(user: user, message: message)
                     
@@ -73,22 +74,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    private func sendToFirebase(_ message: String) {
-        let chat = [
-            "user": uid,
-            "message": message
-        ]
-
-        self.refChats.childByAutoId().setValue(chat)
-    }
-
     @IBAction func btnSendClicked(_ sender: Any) {
         guard let message = txtMessage.text else {return}
         
         txtMessage.text = ""
         
         print("Message: \(message)")
-        sendToFirebase(message)
+
+        let chat = [
+            "user": uid,
+            "message": message
+        ]
+        
+        self.refChats.childByAutoId().setValue(chat)
     }
 }
 
