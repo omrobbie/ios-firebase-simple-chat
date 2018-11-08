@@ -15,6 +15,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var txtSignInStatus: UILabel!
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var tblChatList: UITableView!
+    @IBOutlet weak var btnSignInAndOut: UIBarButtonItem!
     
     var uid: String?
     var refChats: DatabaseReference!
@@ -35,17 +36,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
     private func setupEnv() {
-        self.uid = Auth.auth().currentUser?.uid ?? ""
         self.refChats = Database.database().reference().child("chats")
         
         if Auth.auth().currentUser != nil {
             self.txtSignInStatus.text = Auth.auth().currentUser?.uid
+            self.btnSignInAndOut.title = "Sign Out"
         } else {
             Auth.auth().signInAnonymously { (result, error) in
                 if let error = error {
                     print("Error: Sign in anonymously failed! \(error)")
                     return
                 }
+
+                self.uid = Auth.auth().currentUser?.uid
+                self.txtSignInStatus.text = self.uid
+                self.btnSignInAndOut.title = "Sign Out"
             }
         }
     }
@@ -87,6 +92,32 @@ class ViewController: UIViewController, UITextFieldDelegate {
         ]
         
         self.refChats.childByAutoId().setValue(chat)
+    }
+    
+    @IBAction func btnSignInAndOutClicked(_ sender: Any) {
+        if btnSignInAndOut.title == "Sign In" {
+            self.performSegue(withIdentifier: "toSignIn", sender: self)
+        } else {
+            if Auth.auth().currentUser?.isAnonymous ?? false {
+                Auth.auth().currentUser?.delete(completion: { (error) in
+                    if let error = error {
+                        print("Error: Delete anonymous user failed! \(error.localizedDescription)")
+                        return
+                    }
+                })
+            }
+            
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                print("Error: Sign out failed!")
+                return
+            }
+            
+            print("Sign out success!")
+            txtSignInStatus.text = "Please sign in.."
+            btnSignInAndOut.title = "Sign In"
+        }
     }
 }
 
