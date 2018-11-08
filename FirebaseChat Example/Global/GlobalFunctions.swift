@@ -11,7 +11,29 @@ import Firebase
 func signInAnonymouslyDone(completion: @escaping () -> ()) {
     Auth.auth().signInAnonymously { (result, error) in
         if let error = error {
-            print("Error: Sign in anonymously failed! \(error)")
+            print("Error: Sign in anonymously failed! \(error.localizedDescription)")
+            return
+        }
+        
+        completion()
+    }
+}
+
+func signInWithEmail(email: String, password: String, completion: @escaping () -> ()) {
+    Auth.auth().signIn(withEmail: email, password: password) { (result, error) in
+        if let error = error {
+            print("Error: Sign in with email failed! \(error.localizedDescription)")
+            return
+        }
+        
+        completion()
+    }
+}
+
+func registerWithEmail(email: String, password: String, completion: @escaping () -> ()) {
+    Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
+        if let error = error {
+            print("Error: Create new user with email failed! \(error.localizedDescription)")
             return
         }
         
