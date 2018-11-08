@@ -44,11 +44,12 @@ class ViewController: UIViewController, UITextFieldDelegate, SignInViewControlle
             self.btnSignInAndOut.title = "Sign Out"
         } else {
             signInAnonymouslyDone {
-                uid = Auth.auth().currentUser?.uid
                 self.txtSignInStatus.text = uid
                 self.btnSignInAndOut.title = "Sign Out"
             }
         }
+
+        uid = Auth.auth().currentUser?.uid
     }
     
     private func setupEnv() {
