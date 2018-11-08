@@ -12,6 +12,8 @@ import Firebase
 class ViewController: UIViewController {
 
     @IBOutlet weak var txtSignInStatus: UILabel!
+    @IBOutlet weak var txtMessage: UITextField!
+    @IBOutlet weak var tblChatList: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,5 +28,11 @@ class ViewController: UIViewController {
                 }
             }
         }        
+    }
+    
+    @IBAction func btnSendClicked(_ sender: Any) {
+        guard let message = txtMessage.text else {return}
+        
+        print("Message: \(message)")
     }
 }
