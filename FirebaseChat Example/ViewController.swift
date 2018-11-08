@@ -16,13 +16,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var txtMessage: UITextField!
     @IBOutlet weak var tblChatList: UITableView!
     
-    var ref: DatabaseReference!
+    var uid: String?
+    var refChats: DatabaseReference!
+    
+    var chats = [ChatModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupEnv()
+    }
+    
+    private func setupEnv() {
+        self.uid = Auth.auth().currentUser?.uid ?? ""
+        self.refChats = Database.database().reference().child("chats")
+        
         if Auth.auth().currentUser != nil {
-            txtSignInStatus.text = Auth.auth().currentUser?.uid
+            self.txtSignInStatus.text = Auth.auth().currentUser?.uid
         } else {
             Auth.auth().signInAnonymously { (result, error) in
                 if let error = error {
@@ -34,17 +44,14 @@ class ViewController: UIViewController {
     }
     
     private func sendToFirebase(_ message: String) {
-        guard let uid = Auth.auth().currentUser?.uid else {return}
-        self.ref = Database.database().reference()
-
-        let data = [
+        let chat = [
             "user": uid,
             "message": message
         ]
-        
-        self.ref.child("chats").childByAutoId().setValue(data)
+
+        self.refChats.childByAutoId().setValue(chat)
     }
-    
+
     @IBAction func btnSendClicked(_ sender: Any) {
         guard let message = txtMessage.text else {return}
         
