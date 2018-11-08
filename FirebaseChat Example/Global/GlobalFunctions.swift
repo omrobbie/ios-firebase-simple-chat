@@ -60,3 +60,16 @@ func signOutSuccess() -> Bool {
     
     return true
 }
+
+func sendChatToFirebase(message: String) -> Bool {
+    if Auth.auth().currentUser == nil {return false}
+    
+    let chat = [
+        "user": uid,
+        "message": message
+    ]
+    
+    refChat.childByAutoId().setValue(chat)
+    
+    return true
+}

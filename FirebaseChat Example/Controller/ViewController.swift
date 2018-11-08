@@ -17,9 +17,6 @@ class ViewController: UIViewController, UITextFieldDelegate, SignInViewControlle
     @IBOutlet weak var tblChatList: UITableView!
     @IBOutlet weak var btnSignInAndOut: UIBarButtonItem!
     
-    var uid: String?
-    var refChats: DatabaseReference!
-    
     var chats = [ChatModel]()
     
     override func viewDidLoad() {
@@ -47,21 +44,19 @@ class ViewController: UIViewController, UITextFieldDelegate, SignInViewControlle
             self.btnSignInAndOut.title = "Sign Out"
         } else {
             signInAnonymouslyDone {
-                self.uid = Auth.auth().currentUser?.uid
-                self.txtSignInStatus.text = self.uid
+                uid = Auth.auth().currentUser?.uid
+                self.txtSignInStatus.text = uid
                 self.btnSignInAndOut.title = "Sign Out"
             }
         }
     }
     
     private func setupEnv() {
-        self.refChats = Database.database().reference().child("chats")
-        
         self.updateSignInStatus()
     }
     
     private func loadData() {
-        self.refChats.observe(.value) { (snapshot) in
+        refChat.observe(.value) { (snapshot) in
             if !snapshot.exists() {self.chats.removeAll()}
             
             if snapshot.childrenCount > 0 {
@@ -87,16 +82,10 @@ class ViewController: UIViewController, UITextFieldDelegate, SignInViewControlle
     @IBAction func btnSendClicked(_ sender: Any) {
         guard let message = txtMessage.text else {return}
         
-        txtMessage.text = ""
-        
-        print("Message: \(message)")
-
-        let chat = [
-            "user": uid,
-            "message": message
-        ]
-        
-        self.refChats.childByAutoId().setValue(chat)
+        if sendChatToFirebase(message: message) {
+            txtMessage.text = ""
+            print("Message: \(message)")
+        }
     }
     
     @IBAction func btnSignInAndOutClicked(_ sender: Any) {
@@ -128,7 +117,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             if let id = chats[indexPath.row].id {
-                self.refChats.child(id).removeValue()
+                refChat.child(id).removeValue()
             }
         }
     }

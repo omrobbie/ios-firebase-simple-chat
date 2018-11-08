@@ -11,6 +11,7 @@
 		FC17F628219446D900364127 /* ChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17F627219446D900364127 /* ChatModel.swift */; };
 		FC17F62A21947A9A00364127 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17F62921947A9A00364127 /* SignInViewController.swift */; };
 		FC17F62C2194867700364127 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17F62B2194867700364127 /* GlobalFunctions.swift */; };
+		FC17F6322194CCFF00364127 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC17F6312194CCFF00364127 /* GlobalVariables.swift */; };
 		FC2AF7CD21927E03002FF50B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AF7CC21927E03002FF50B /* AppDelegate.swift */; };
 		FC2AF7CF21927E03002FF50B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC2AF7CE21927E03002FF50B /* ViewController.swift */; };
 		FC2AF7D221927E03002FF50B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC2AF7D021927E03002FF50B /* Main.storyboard */; };
@@ -26,6 +27,7 @@
 		FC17F627219446D900364127 /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		FC17F62921947A9A00364127 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		FC17F62B2194867700364127 /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		FC17F6312194CCFF00364127 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		FC2AF7C921927E03002FF50B /* FirebaseChat Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FirebaseChat Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC2AF7CC21927E03002FF50B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FC2AF7CE21927E03002FF50B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 			isa = PBXGroup;
 			children = (
 				FC17F62B2194867700364127 /* GlobalFunctions.swift */,
+				FC17F6312194CCFF00364127 /* GlobalVariables.swift */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC17F6322194CCFF00364127 /* GlobalVariables.swift in Sources */,
 				FC17F62A21947A9A00364127 /* SignInViewController.swift in Sources */,
 				FC2AF7CF21927E03002FF50B /* ViewController.swift in Sources */,
 				FC17F62C2194867700364127 /* GlobalFunctions.swift in Sources */,
