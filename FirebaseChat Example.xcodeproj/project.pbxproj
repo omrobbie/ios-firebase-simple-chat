@@ -86,13 +86,13 @@
 			children = (
 				FC2AF7CC21927E03002FF50B /* AppDelegate.swift */,
 				FC2AF7CE21927E03002FF50B /* ViewController.swift */,
+				FC17F62921947A9A00364127 /* SignInViewController.swift */,
 				FC17F627219446D900364127 /* ChatModel.swift */,
 				FC2AF7D021927E03002FF50B /* Main.storyboard */,
 				FC2AF7D321927E04002FF50B /* Assets.xcassets */,
 				FC2AF7D521927E04002FF50B /* LaunchScreen.storyboard */,
 				FC2AF7D821927E04002FF50B /* Info.plist */,
 				FC2AF7DE219281D8002FF50B /* GoogleService-Info.plist */,
-				FC17F62921947A9A00364127 /* SignInViewController.swift */,
 			);
 			path = "FirebaseChat Example";
 			sourceTree = "<group>";

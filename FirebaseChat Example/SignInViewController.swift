@@ -10,7 +10,22 @@ import UIKit
 
 class SignInViewController: UIViewController {
 
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    @IBAction func btnSignInAnonymouslyClicked(_ sender: Any) {
+        print(#function)
+    }
+    
+    @IBAction func btnSignInWithEmailClicked(_ sender: Any) {
+        print(#function)
+    }
+    
+    @IBAction func btnRegisterClicked(_ sender: Any) {
+        print(#function)
     }
 }
