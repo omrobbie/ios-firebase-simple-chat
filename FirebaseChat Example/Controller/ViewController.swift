@@ -117,6 +117,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = #colorLiteral(red: 0.9688743949, green: 0.9631143212, blue: 0.9733015895, alpha: 1)
         }
         
+        cell.textLabel?.numberOfLines = 0
         cell.textLabel?.text = self.chats[indexPath.row].message
         
         return cell
