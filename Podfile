@@ -6,6 +6,7 @@ target 'FirebaseChat Example' do
   use_frameworks!
 
   # Pods for FirebaseChat Example
+  pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   

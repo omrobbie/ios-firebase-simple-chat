@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Google
+ * Copyright 2019 Google
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,25 +14,18 @@
  * limitations under the License.
  */
 
-#ifndef FIRComponentRegistrant_h
-#define FIRComponentRegistrant_h
-
-#import <Foundation/Foundation.h>
-
-@class FIRComponent;
+#import "FIRInstanceIDTokenOperation.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-/// Describes functionality for SDKs registering components in the `FIRComponentContainer`.
-NS_SWIFT_NAME(ComponentRegistrant)
-@protocol FIRComponentRegistrant
+@interface FIRInstanceIDTokenDeleteOperation : FIRInstanceIDTokenOperation
 
-/// Returns one or more FIRComponents that will be registered in
-/// FIRApp and participate in dependency resolution and injection.
-+ (NSArray<FIRComponent *> *)componentsToRegister;
+- (instancetype)initWithAuthorizedEntity:(nullable NSString *)authorizedEntity
+                                   scope:(nullable NSString *)scope
+                      checkinPreferences:(FIRInstanceIDCheckinPreferences *)checkinPreferences
+                                 keyPair:(nullable FIRInstanceIDKeyPair *)keyPair
+                                  action:(FIRInstanceIDTokenAction)action;
 
 @end
 
 NS_ASSUME_NONNULL_END
-
-#endif /* FIRComponentRegistrant_h */

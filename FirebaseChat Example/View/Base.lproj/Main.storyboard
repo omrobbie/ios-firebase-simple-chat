@@ -99,6 +99,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Firebase Chat" id="lQ5-sn-vYZ">
+                        <barButtonItem key="leftBarButtonItem" title="Profile" id="Zbb-oh-THv"/>
                         <barButtonItem key="rightBarButtonItem" title="Sign In" id="aHD-49-Iaj">
                             <connections>
                                 <action selector="btnSignInAndOutClicked:" destination="BYZ-38-t0r" id="Qtp-c9-18e"/>

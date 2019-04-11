@@ -57,7 +57,10 @@ class ViewController: UIViewController, UITextFieldDelegate, SignInViewControlle
     }
     
     private func loadData() {
-        refChat.observe(.value) { (snapshot) in
+        refChat.observe(.value) { (snapshot, error) in
+            if let error = error {
+                print("Error: Load data error! \(String(error.description))")
+            }
             if !snapshot.exists() {self.chats.removeAll()}
             
             if snapshot.childrenCount > 0 {
